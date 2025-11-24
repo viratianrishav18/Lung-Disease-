@@ -1,6 +1,9 @@
 ---
 name: CI/CD Pipeline
 
+env:
+  PYTHON_VERSION: '3.10'
+
 "on":
   push:
     branches:
@@ -25,7 +28,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install dependencies
         run: |
@@ -52,7 +55,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
+          python-version: ${{ env.PYTHON_VERSION }}
 
       - name: Install linting tools
         run: |
@@ -61,11 +64,14 @@ jobs:
 
       - name: Run linters
         run: |
-          # Check code style
+          # Check code style - if Python files exist, linting must pass
           if ls *.py 2>/dev/null || [ -d src ] || [ -d app ]; then
+            echo "Running flake8..."
             flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-            black --check . || echo "Black formatting check completed"
-            isort --check-only . || echo "Import sorting check completed"
+            echo "Running black check..."
+            black --check .
+            echo "Running isort check..."
+            isort --check-only .
           else
             echo "No Python files found, skipping linting"
           fi

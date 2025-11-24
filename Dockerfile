@@ -35,6 +35,9 @@ USER appuser
 EXPOSE 8000
 
 # Health check
+# Note: Requires a /health endpoint in your application
+# Example Flask: @app.route('/health') def health(): return {'status': 'healthy'}
+# Example FastAPI: @app.get('/health') def health(): return {'status': 'healthy'}
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')" || exit 1
 

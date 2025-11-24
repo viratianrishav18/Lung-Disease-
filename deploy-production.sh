@@ -98,4 +98,5 @@ CURRENT_DATE=$(date +%Y%m%d-%H%M%S)
 RELEASE_TAG="release-${CURRENT_DATE}"
 echo -e "${YELLOW}Creating release tag: ${RELEASE_TAG}${NC}"
 git tag -a ${RELEASE_TAG} -m "Production release ${CURRENT_DATE}"
-echo -e "${GREEN}✓ Release tagged${NC}"
+git push origin ${RELEASE_TAG}
+echo -e "${GREEN}✓ Release tagged and pushed${NC}"

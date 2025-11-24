@@ -3,7 +3,13 @@
 # Branch Setup Script for Lung Disease Predictor
 # This script creates and pushes the develop and staging branches
 #
-# Usage: Make sure this script has execute permissions:
+# Prerequisites:
+#   - Git installed and configured
+#   - Write access to the repository
+#   - Git authentication configured (SSH key or HTTPS token)
+#   - Must be run from the repository root directory
+#
+# Usage:
 #   chmod +x setup-branches.sh
 #   ./setup-branches.sh
 
