@@ -2,6 +2,10 @@
 
 # Branch Setup Script for Lung Disease Predictor
 # This script creates and pushes the develop and staging branches
+#
+# Usage: Make sure this script has execute permissions:
+#   chmod +x setup-branches.sh
+#   ./setup-branches.sh
 
 set -e
 

@@ -2,6 +2,8 @@
 
 # Deploy to Production Script
 # This script deploys the application to the production environment
+#
+# Usage: chmod +x deploy-production.sh && ./deploy-production.sh
 
 set -e
 

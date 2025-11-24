@@ -2,6 +2,8 @@
 
 # Deploy to Staging Script
 # This script deploys the application to the staging environment
+#
+# Usage: chmod +x deploy-staging.sh && ./deploy-staging.sh
 
 set -e
 
