@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    container_name: lung-disease-app
+    ports:
+      - "8000:8000"
+    environment:
+      - APP_ENV=${APP_ENV:-development}
+      - DEBUG=${DEBUG:-false}
+      - LOG_LEVEL=${LOG_LEVEL:-info}
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Optional: Database service (uncomment if needed)
+  # db:
+  #   image: postgres:15
+  #   container_name: lung-disease-db
+  #   environment:
+  #     - POSTGRES_DB=lung_disease
+  #     - POSTGRES_USER=dbuser
+  #     - POSTGRES_PASSWORD=${DB_PASSWORD}
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   ports:
+  #     - "5432:5432"
+  #   networks:
+  #     - app-network
+  #   restart: unless-stopped
+
+  # Optional: Redis cache (uncomment if needed)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: lung-disease-redis
+  #   ports:
+  #     - "6379:6379"
+  #   networks:
+  #     - app-network
+  #   restart: unless-stopped
+
+networks:
+  app-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:
